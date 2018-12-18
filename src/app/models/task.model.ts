@@ -1,6 +1,6 @@
 export class TaskModel {
     public id?: any;
-    public title: string;
-    public userId: number;
-    public completed: boolean;
+    public title: any;
+    public userId: any;
+    public completed: any;
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {JsonPlaceholderService} from '../../services/json-placeholder-service.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {TaskModel} from '../../models/task.model';
 
 @Component({
     selector: 'app-form',
@@ -28,12 +29,13 @@ export class FormComponent implements OnInit {
 
         const newTask = {
             userId: 1,
-            complated: false,
+            completed: false,
             title: title
         };
 
         this.server.addTask(newTask).subscribe((response) => {
-            console.log(response);
+            this.form.reset();
+            this.server.emitNewTask(response);
         });
     }
 

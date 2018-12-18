@@ -9,7 +9,7 @@ import {TaskModel} from '../../models/task.model';
 })
 export class ListComponent implements OnInit {
 
-    tasks: any[];
+    tasks: TaskModel[] = [];
 
     constructor(
         public server: JsonPlaceholderService
@@ -26,6 +26,13 @@ export class ListComponent implements OnInit {
             }, error => {
                 console.log(error);
             });
+
+        //
+        this.server.newTask.subscribe((response: TaskModel) => {
+            if (response['body']) {
+                this.tasks.unshift(response);
+            }
+        });
     }
 
     identify(index) {
@@ -33,7 +40,7 @@ export class ListComponent implements OnInit {
     }
 
     deleteTask(id) {
-        this.server.deleteTask(id).subscribe(response => {
+        this.server.deleteTask(id).subscribe(() => {
             // фильтруем и удаляем таск, не совпадающиеся с имеющимися
             this.tasks = this.tasks.filter(task => task.id !== id);
         });
