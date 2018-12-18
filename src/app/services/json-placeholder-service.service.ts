@@ -14,15 +14,15 @@ export class JsonPlaceholderService {
     ) {
     }
 
-    getTask(): Observable<TaskModel> {
+    getTask(): Observable<any> {
         return this.http.get(this.configURL);
     }
 
-    addTask(task): Observable<TaskModel> {
+    addTask(task): Observable<any> {
         return this.http.post(this.configURL, task);
     }
 
-    deleteTask(id): Observable<TaskModel> {
+    deleteTask(id): Observable<any> {
         return this.http.delete(this.configURL + id);
     }
 }

@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="form"
+              (ngSubmit)="addTask()">
+            <div class="form-group">
+                <label for="text">Text</label>
+                <input type="text"
+                       class="form-control"
+                       id="text"
+                       name="text"
+                       formControlName="text"
+                >
+                <div class="mt-2 text-center alert alert-danger"
+                     *ngIf="this.form.get('text').invalid && this.form.get('text').touched">
+                    Title required!
+                </div>
+                <button class="btn btn-primary mt-2"
+                        [disabled]="form.invalid">
+                    Add task
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
