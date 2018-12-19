@@ -39,5 +39,4 @@ export class ListComponent implements OnInit {
             this.tasks = this.tasks.filter(task => task.id !== id);
         });
     }
-
 }

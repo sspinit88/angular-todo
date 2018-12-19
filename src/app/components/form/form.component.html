@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <form [formGroup]="form"
+        <form #form="ngForm"
               (ngSubmit)="addTask()"
         >
             <div class="form-group formTodo" appTooltip [textTooltip]="spanText()" #t="tool">
@@ -8,17 +8,19 @@
                 <input type="text"
                        class="form-control"
                        id="text"
-                       name="text"
-                       formControlName="text"
+                       name="title"
+                       #title="ngModel"
+                       ngModel
+                       required
                        (focus)="t.show()"
                        (blur)="t.hide()"
                 >
                 <div class="mt-2 text-center alert alert-danger"
-                     *ngIf="this.form.get('text').invalid && this.form.get('text').touched">
+                     *ngIf="title.invalid && title.touched">
                     Title required!
                 </div>
                 <button class="btn btn-primary mt-2"
-                        [disabled]="form.invalid">
+                        [disabled]="title.invalid">
                     Add task
                 </button>
             </div>

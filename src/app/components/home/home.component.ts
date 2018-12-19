@@ -13,9 +13,4 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
     }
 
-    addNewOneTask(task) {
-        // this.newTaskThis.push(task);
-        console.log('-> home', task);
-    }
-
 }
