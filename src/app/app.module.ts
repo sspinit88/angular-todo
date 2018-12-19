@@ -12,6 +12,7 @@ import {ListComponent} from './components/list/list.component';
 import {ListItemComponent} from './components/list-item/list-item.component';
 
 import {JsonPlaceholderService} from './services/json-placeholder-service.service';
+import { TooltipDirective } from './directives/tooltip.directive';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {JsonPlaceholderService} from './services/json-placeholder-service.servic
         FormComponent,
         ListComponent,
         ListItemComponent,
+        TooltipDirective,
     ],
     imports: [
         BrowserModule,

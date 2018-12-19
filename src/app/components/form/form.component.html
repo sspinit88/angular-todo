@@ -1,14 +1,17 @@
 <div class="card">
     <div class="card-body">
         <form [formGroup]="form"
-              (ngSubmit)="addTask()">
-            <div class="form-group">
+              (ngSubmit)="addTask()"
+        >
+            <div class="form-group formTodo" appTooltip [textTooltip]="spanText()" #t="tool">
                 <label for="text">Text</label>
                 <input type="text"
                        class="form-control"
                        id="text"
                        name="text"
                        formControlName="text"
+                       (focus)="t.show()"
+                       (blur)="t.hide()"
                 >
                 <div class="mt-2 text-center alert alert-danger"
                      *ngIf="this.form.get('text').invalid && this.form.get('text').touched">
@@ -18,6 +21,7 @@
                         [disabled]="form.invalid">
                     Add task
                 </button>
+                <!--<span class="ttp open">{{spanText()}}</span>-->
             </div>
         </form>
     </div>

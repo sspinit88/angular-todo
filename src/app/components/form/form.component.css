@@ -1,0 +1,26 @@
+.formTodo {
+    position: relative;
+}
+
+.ttp.open {
+    display: flex;
+}
+
+.ttp {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+
+    position: absolute;
+    left: 45%;
+    top: -5%;
+    z-index: 1000;
+
+    width: 80px;
+    height: 30px;
+    background: blue !important;
+    color: white !important;
+    border-radius: 5px
+}

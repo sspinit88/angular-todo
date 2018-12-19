@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
             });
 
         //
-        this.server.newTask.subscribe((response: TaskModel) => {
+        this.server.getTask().subscribe((response: TaskModel) => {
             if (response['body']) {
                 this.tasks.unshift(response);
             }

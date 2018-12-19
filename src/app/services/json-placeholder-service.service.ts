@@ -35,18 +35,18 @@ export class JsonPlaceholderService {
     // Создается переменная taskSourse, в которую присваевается новый класс BehaviorSubject<TaskModel>,
     // возвращающий объект одной задачи с пустыми полями
 
-    private taskSource = new BehaviorSubject<TaskModel>({id: 0, title: '', userId: 0, completed: false});
+    // private taskSource = new BehaviorSubject<TaskModel>({id: 0, title: '', userId: 0, completed: false});
 
     // В переменную newTask кладем объект taskSourse и вызываем метод .asObservable()
     // .asObservable() вернет объект с методами подписки на событие.
     // Создаем метод emitNewTask(), который примнимает в себя одну задачу и вызывает метод .next(),
     // который осведомит все подписанные эл об изменениях, то есть передадим тот объект, который вернет сервер
 
-    newTask = this.taskSource.asObservable();
+    // newTask = this.taskSource.asObservable();
 
-    emitNewTask(task: TaskModel) {
-        this.taskSource.next(task);
-    }
+    // emitNewTask(task: TaskModel) {
+    //    this.taskSource.next(task);
+    // }
 
     // далее, в ngOnInit() сомпоненты элемента-слушателя, нужно прописать метод emitNewTask()
 

@@ -24,19 +24,23 @@ export class FormComponent implements OnInit {
         });
     }
 
+    spanText() {
+        return 'Input task.';
+    }
+
     addTask() {
         const title: string = this.form.value;
 
-        const newTask = {
-            userId: 1,
-            completed: false,
-            title: title
-        };
+        // const newTask = {
+        //     userId: 1,
+        //     completed: false,
+        //     title: title
+        // };
 
-        this.server.addTask(newTask).subscribe((response) => {
-            this.form.reset();
-            this.server.emitNewTask(response);
-        });
+        // this.server.addTask(newTask).subscribe((response) => {
+        //     this.form.reset();
+        //     this.server.emitNewTask(response);
+        // });
     }
 
 }
