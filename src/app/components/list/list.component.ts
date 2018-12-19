@@ -27,6 +27,13 @@ export class ListComponent implements OnInit {
                     console.log(error);
             });
 
+        // subscribe new task event
+        this.server.newTask.subscribe((response: TaskModel) => {
+           if(response['body']) {
+               this.tasks.unshift(response['body']);
+           }
+        });
+
     }
 
     identify(index) {

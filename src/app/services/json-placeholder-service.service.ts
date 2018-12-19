@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 import {TaskModel} from '../models/task.model';
 
@@ -28,4 +28,19 @@ export class JsonPlaceholderService {
     deleteTask(id): Observable<any> {
         return this.http.delete(this.configUrl + id);
     }
+
+    // при инициализации класса BehaviorSubject в него должны передать обнуленные значения
+    // BehaviorSubject предоставляет методы, которые позволят emit-ть события, тогда, когда нам нужно
+    // уведомление компонент об изменении данных будет проводиться через переменную taskSourse
+    private taskSourse = new BehaviorSubject<TaskModel>({id: 0, title: '', userId: 0, completed: false});
+    // newTask  вернет объект с методами подписки на событие
+    public newTask = this.taskSourse.asObservable();
+
+    // emitAddTask - вызывает у taskSourse метод next, вызывает все колбеки, подписанные на событие
+    emitAddTask(task: TaskModel) {
+        this.taskSourse.next(task);
+    }
+
+    // из компоненты form - вызываем событие,
+    // в list - подписываемся на событие
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 
 import {JsonPlaceholderService} from '../../services/json-placeholder-service.service';
+import {TaskModel} from '../../models/task.model';
 
 
 @Component({
@@ -12,9 +13,9 @@ export class FormComponent implements OnInit {
 
     title: string;
 
-    // @ViewChild('form') form;
+    @ViewChild('form') form;
 
-     constructor(
+    constructor(
         private server: JsonPlaceholderService
     ) {
     }
@@ -32,8 +33,9 @@ export class FormComponent implements OnInit {
             completed: false,
             title: this.title
         };
-        this.server.addTask(newTask).subscribe(response => {
-            console.log('add', response);
+        this.server.addTask(newTask).subscribe((response: TaskModel) => {
+            this.server.emitAddTask(response);
+            this.form.reset();
         });
     }
 
