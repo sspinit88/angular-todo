@@ -16,17 +16,13 @@ export class ListItemComponent implements OnInit {
     @Output() delete = new EventEmitter();
 
     constructor(
-        public server: JsonPlaceholderService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
     }
 
     deleteOneTask() {
-        this.server.deleteTask(this.task.id).subscribe(() => {
-            this.delete.emit(this.task.id);
-        });
+        this.delete.emit(this.task.id);
     }
 
 }

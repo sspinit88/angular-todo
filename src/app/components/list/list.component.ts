@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {JsonPlaceholderService} from '../../services/json-placeholder-service.service';
 import {TaskModel} from '../../models/task.model';
 
@@ -9,7 +9,7 @@ import {TaskModel} from '../../models/task.model';
 })
 export class ListComponent implements OnInit {
 
-    tasks: TaskModel[] = [];
+    tasks: TaskModel[];
 
     constructor(
         public server: JsonPlaceholderService
@@ -20,19 +20,13 @@ export class ListComponent implements OnInit {
         // при старте получаем все задачи
         this.server.getTask()
             .subscribe(data => {
-                if (data) {
-                    this.tasks = data;
-                }
-            }, error => {
-                console.log(error);
+                    if (data) {
+                        this.tasks = data;
+                    }
+                }, error => {
+                    console.log(error);
             });
 
-        //
-        this.server.getTask().subscribe((response: TaskModel) => {
-            if (response['body']) {
-                this.tasks.unshift(response);
-            }
-        });
     }
 
     identify(index) {
