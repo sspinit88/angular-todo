@@ -10,9 +10,11 @@ import {JsonPlaceholderService} from '../../services/json-placeholder-service.se
 })
 export class FormComponent implements OnInit {
 
-    @ViewChild('form') form;
+    title: string;
 
-    constructor(
+    // @ViewChild('form') form;
+
+     constructor(
         private server: JsonPlaceholderService
     ) {
     }
@@ -25,7 +27,14 @@ export class FormComponent implements OnInit {
     }
 
     addTask() {
-        console.log(this.form.value);
+        const newTask = {
+            userId: 1,
+            completed: false,
+            title: this.title
+        };
+        this.server.addTask(newTask).subscribe(response => {
+            console.log('add', response);
+        });
     }
 
 }

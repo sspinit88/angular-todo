@@ -9,18 +9,18 @@
                        class="form-control"
                        id="text"
                        name="title"
-                       #title="ngModel"
-                       ngModel
+                       [(ngModel)]="title"
+                       #titleTask="ngModel"
                        required
                        (focus)="t.show()"
                        (blur)="t.hide()"
                 >
                 <div class="mt-2 text-center alert alert-danger"
-                     *ngIf="title.invalid && title.touched">
+                     *ngIf="titleTask.invalid && titleTask.touched">
                     Title required!
                 </div>
                 <button class="btn btn-primary mt-2"
-                        [disabled]="title.invalid">
+                        [disabled]="titleTask.invalid">
                     Add task
                 </button>
             </div>
