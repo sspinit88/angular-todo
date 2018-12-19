@@ -20,18 +20,18 @@ export class ListComponent implements OnInit {
         // при старте получаем все задачи
         this.server.getTask()
             .subscribe(data => {
-                    if (data) {
-                        this.tasks = data;
-                    }
-                }, error => {
-                    console.log(error);
+                if (data) {
+                    this.tasks = data;
+                }
+            }, error => {
+                console.log(error);
             });
 
         // subscribe new task event
         this.server.newTask.subscribe((response: TaskModel) => {
-           if(response['body']) {
-               this.tasks.unshift(response['body']);
-           }
+            if (response['body']) {
+                this.tasks.unshift(response['body']);
+            }
         });
 
     }
@@ -47,3 +47,5 @@ export class ListComponent implements OnInit {
         });
     }
 }
+
+// todo: реализовать вывод сообщения об ошибке
