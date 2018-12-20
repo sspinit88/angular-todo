@@ -40,6 +40,18 @@ export class ListComponent implements OnInit {
                 this.tasks.unshift(newTask);
             }
         });
+        // subscribe on update Task
+        this.server.updateTask.subscribe((response: TaskModel) => {
+          //  console.log(response);
+            if (response['body']) { // если приходит task c телом
+                this.tasks = this.tasks.map((itemTask) => {
+                    if (itemTask.id === response.id) { // проверяем id на совпадение
+                        itemTask.title = response['body'].title; // !!!
+                    }
+                    return itemTask;
+                });
+            }
+        });
     }
 
     identify(index) {

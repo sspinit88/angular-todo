@@ -29,6 +29,12 @@ export class JsonPlaceholderService {
         return this.http.delete(this.configUrl + id);
     }
 
+    editTask(task: TaskModel) {
+        return this.http.put(this.configUrl + task.id, {
+            body: task
+        });
+    }
+
     // при инициализации класса BehaviorSubject в него должны передать обнуленные значения
     // BehaviorSubject предоставляет методы, которые позволят emit-ть события, тогда, когда нам нужно
     // уведомление компонент об изменении данных будет проводиться через переменную taskSourse
@@ -44,6 +50,7 @@ export class JsonPlaceholderService {
     // из компоненты form - вызываем событие,
     // в list - подписываемся на событие
 
+    //
     private editTaskSourse = new BehaviorSubject<TaskModel>({id: 0, title: '', userId: 0, completed: false});
 
     public newEditTask = this.editTaskSourse.asObservable();
@@ -51,5 +58,14 @@ export class JsonPlaceholderService {
     emitEditTask(task: TaskModel) {
         this.editTaskSourse.next(task);
     }
+
+    //
+    private updateTaskSourse = new BehaviorSubject<TaskModel>({id: 0, title: '', userId: 0, completed: false});
+    public updateTask = this.updateTaskSourse.asObservable();
+
+    emitUpdateTask(task: TaskModel) {
+        this.updateTaskSourse.next(task);
+    }
+
 
 }
