@@ -43,4 +43,13 @@ export class JsonPlaceholderService {
 
     // из компоненты form - вызываем событие,
     // в list - подписываемся на событие
+
+    private editTaskSourse = new BehaviorSubject<TaskModel>({id: 0, title: '', userId: 0, completed: false});
+
+    public newEditTask = this.editTaskSourse.asObservable();
+
+    emitEditTask(task: TaskModel) {
+        this.editTaskSourse.next(task);
+    }
+
 }

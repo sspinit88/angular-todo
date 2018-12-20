@@ -1,7 +1,7 @@
 <div class="card mt-5" [ngClass]="{'bg-success text-white': task.completed}">
     <div class="card-body" ></div>
     <p class="card-text text-center">{{task.title}}</p>
-    <button class="btn btn-primary mt-1">
+    <button class="btn btn-primary mt-1" (click)="editTask()">
         Edit
     </button>
     <button class="btn btn-danger mt-1"

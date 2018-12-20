@@ -1,5 +1,6 @@
 <app-list-item *ngFor="let todo of tasks; trackBy:identify"
                [task]="todo"
                (delete)="deleteTask($event)"
+               (editOneTask)="editTask($event)"
 >
 </app-list-item>

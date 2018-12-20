@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
 import {JsonPlaceholderService} from '../../services/json-placeholder-service.service';
 import {TaskModel} from '../../models/task.model';
+
 
 @Component({
     selector: 'app-list',
@@ -30,10 +32,14 @@ export class ListComponent implements OnInit {
         // subscribe new task event
         this.server.newTask.subscribe((response: TaskModel) => {
             if (response['body']) {
-                this.tasks.unshift(response['body']);
+                // Object.assign дает возможность объединить объекты
+                // через него говорим, что в пустой объект хотим записать response['body'] и объект {id: response.id},
+                // который получили от сервера
+                // затем, полученный из двух объектов объект добавляем в массив задач
+                const newTask = Object.assign({}, response['body'], {id: response.id});
+                this.tasks.unshift(newTask);
             }
         });
-
     }
 
     identify(index) {
@@ -46,6 +52,10 @@ export class ListComponent implements OnInit {
             this.tasks = this.tasks.filter(task => task.id !== id);
         });
     }
+
+    editTask(task: TaskModel) {
+        this.server.emitEditTask(task);
+        // далее идем в компоненту form
+    }
 }
 
-// todo: реализовать вывод сообщения об ошибке

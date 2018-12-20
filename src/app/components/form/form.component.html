@@ -1,7 +1,6 @@
 <div class="card">
     <div class="card-body">
         <form #form="ngForm"
-              (ngSubmit)="addTask()"
         >
             <div class="form-group formTodo" appTooltip [textTooltip]="spanText()" #t="tool">
                 <label for="text">Text</label>
@@ -20,8 +19,16 @@
                     Title required!
                 </div>
                 <button class="btn btn-primary mt-2"
-                        [disabled]="titleTask.invalid">
+                        *ngIf="!isEdit"
+                        [disabled]="titleTask.invalid"
+                        (click)="addTask()">
                     Add task
+                </button>
+                <button class="btn btn-primary mt-2"
+                        *ngIf="isEdit"
+                        (click)="editTask()"
+                        [disabled]="titleTask.invalid">
+                    Edit Task
                 </button>
             </div>
         </form>

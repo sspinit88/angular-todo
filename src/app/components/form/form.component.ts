@@ -12,6 +12,7 @@ import {TaskModel} from '../../models/task.model';
 export class FormComponent implements OnInit {
 
     title: string;
+    isEdit: boolean;
 
     @ViewChild('form') form;
 
@@ -21,6 +22,12 @@ export class FormComponent implements OnInit {
     }
 
     ngOnInit() {
+        // subscribe on edit
+        this.server.newEditTask.subscribe((task: TaskModel) => {
+            if (task.title) {
+                this.isEdit = true;
+            }
+        });
     }
 
     spanText() {
@@ -37,6 +44,10 @@ export class FormComponent implements OnInit {
             this.server.emitAddTask(response);
             this.form.reset();
         });
+    }
+
+    editTask() {
+
     }
 
 }
